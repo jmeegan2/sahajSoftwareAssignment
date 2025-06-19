@@ -45,7 +45,7 @@ Build a claim validator for the game of Tambola (Housie). The system should dete
 ## Approach
 1. Start with a simple function to check if a row is complete.
 2. Expand to handle all game types using if/else or a switch statement.
-3. Encapsulate logic in classes if the problem grows in complexity.
+3. Encapsulate logic in classes if the problem grows in complexity. (Decided not to do this, just didnt feel like it.)
 4. Write tests as I go to make sure each part works.
 5. Refactor to remove duplication and improve clarity.
 
