@@ -43,22 +43,30 @@ function isEarlyFive(ticket, announcedNumbers) {
 
 
 function validateClaim(ticket, announcedNumbers, gameType) {
+    if (!isValidTicket(ticket)) {
+        return "Rejected";
+    }
     switch (gameType) {
         case 'top_line': 
-            return isRowComplete(ticket[0], announcedNumbers);
+            return isRowComplete(ticket[0], announcedNumbers) ? "Accepted" : "Rejected";
         case 'middle_line':
-            return isRowComplete(ticket[1], announcedNumbers);
+            return isRowComplete(ticket[1], announcedNumbers) ? "Accepted" : "Rejected";
         case 'bottom_line':
-            return isRowComplete(ticket[2], announcedNumbers);
+            return isRowComplete(ticket[2], announcedNumbers) ? "Accepted" : "Rejected";
         case 'full_house':
-            return isFullHouse(ticket, announcedNumbers);
+            return isFullHouse(ticket, announcedNumbers) ? "Accepted" : "Rejected";
         case 'early_five':
-            return isEarlyFive(ticket, announcedNumbers);
+            return isEarlyFive(ticket, announcedNumbers) ? "Accepted" : "Rejected";
         default: 
             throw new Error('Unknown game type');
     }
 }
 
+// Validates that a ticket is a 3x9 grid (each row is an array of length 9)
+function isValidTicket(ticket) {
+    return Array.isArray(ticket) &&
+        ticket.length === 3 &&
+        ticket.every(row => Array.isArray(row) && row.length === 9);
+}
 
-
-module.exports = { isRowComplete, isFullHouse, isEarlyFive, validateClaim, isImmediateClaim }
+module.exports = { isRowComplete, isFullHouse, isEarlyFive, validateClaim, isImmediateClaim, isValidTicket }

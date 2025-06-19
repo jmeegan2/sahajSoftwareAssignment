@@ -8,7 +8,7 @@ Build a claim validator for the game of Tambola (Housie). The system should dete
 ## Functional Requirements
 1. **Input:**
    - Numbers announced so far (array of numbers)
-   - A valid ticket (3x9 grid, numbers or blanks)
+   - A valid ticket (3x9 grid, numbers or blanks)   
    - A claim for a specific game (game type)
 
 2. **Output:**
@@ -46,6 +46,8 @@ Build a claim validator for the game of Tambola (Housie). The system should dete
 1. Start with a simple function to check if a row is complete.
 2. Expand to handle all game types using if/else or a switch statement.
 3. Encapsulate logic in classes if the problem grows in complexity.
-4. Write tests as you go to make sure each part works.
+4. Write tests as I go to make sure each part works.
 5. Refactor to remove duplication and improve clarity.
+
+
 

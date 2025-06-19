@@ -36,16 +36,16 @@ describe('Tambola game logic', () => {
             [3, 0, 4],
             [5, 6, 0]
         ];
-        expect(validateClaim(ticket, [1, 2], 'top_line')).toBe(true);
-        expect(validateClaim(ticket, [1, 2, 3], 'top_line')).toBe(false); // extra number after
-        expect(validateClaim(ticket, [3, 4], 'middle_line')).toBe(true);
-        expect(validateClaim(ticket, [3, 4, 5], 'middle_line')).toBe(false);
-        expect(validateClaim(ticket, [5, 6], 'bottom_line')).toBe(true);
-        expect(validateClaim(ticket, [5, 6, 1], 'bottom_line')).toBe(false);
-        expect(validateClaim(ticket, [1, 2, 3, 4, 5, 6], 'full_house')).toBe(true);
-        expect(validateClaim(ticket, [1, 2, 3, 4, 5, 6, 7], 'full_house')).toBe(false);
-        expect(validateClaim(ticket, [1, 2, 3, 4, 5], 'early_five')).toBe(true);
-        expect(validateClaim(ticket, [1, 2, 3, 4, 6, 5], 'early_five')).toBe(false);
+        expect(validateClaim(ticket, [1, 2], 'top_line')).toBe("Accepted");
+        expect(validateClaim(ticket, [1, 2, 3], 'top_line')).toBe("Rejected"); // extra number after
+        expect(validateClaim(ticket, [3, 4], 'middle_line')).toBe("Accepted");
+        expect(validateClaim(ticket, [3, 4, 5], 'middle_line')).toBe("Rejected");
+        expect(validateClaim(ticket, [5, 6], 'bottom_line')).toBe("Accepted");
+        expect(validateClaim(ticket, [5, 6, 1], 'bottom_line')).toBe("Rejected");
+        expect(validateClaim(ticket, [1, 2, 3, 4, 5, 6], 'full_house')).toBe("Accepted");
+        expect(validateClaim(ticket, [1, 2, 3, 4, 5, 6, 7], 'full_house')).toBe("Rejected");
+        expect(validateClaim(ticket, [1, 2, 3, 4, 5], 'early_five')).toBe("Accepted");
+        expect(validateClaim(ticket, [1, 2, 3, 4, 6, 5], 'early_five')).toBe("Rejected");
     })
 
 
@@ -59,7 +59,7 @@ describe('Tambola game logic', () => {
     test('validateClaim works for top_line on full-size ticket', () => {
         // Top line numbers: 5, 12, 34, 56, 67, 89
         const announced = [5,12,34,56,67,89];
-        expect(validateClaim(FULL_SIZE_TAMBOLA_TICKET, announced, 'top_line')).toBe(true);
+        expect(validateClaim(FULL_SIZE_TAMBOLA_TICKET, announced, 'top_line')).toBe("Accepted");
     });
       
     test('Full house claim works for full-size ticket', () => {
