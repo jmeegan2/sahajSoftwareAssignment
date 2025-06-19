@@ -1,0 +1,16 @@
+{
+  "name": "Tambola",
+  "version": "1.0.0",
+  "description": "Claim validator for Tambola game.",
+  "main": "tambola.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "jest": "^30.0.2"
+  }
+}
