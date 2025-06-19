@@ -1,0 +1,16 @@
+{
+  "name": "myversion",
+  "version": "1.0.0",
+  "description": "Build a claim validator for the game of Tambola (Housie). The system should determine if a player's claim for a specific game is valid based on the numbers announced so far and the ticket provided.",
+  "main": "tambola.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "jest": "^30.0.2"
+  }
+}

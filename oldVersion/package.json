@@ -1,0 +1,29 @@
+// {
+//   "name": "tambola-claim-validator",
+//   "version": "1.0.0",
+//   "description": "Tambola (Housie) game claim validator with comprehensive testing",
+//   "main": "tambola.js",
+//   "scripts": {
+//     "test": "jest",
+//     "test:watch": "jest --watch",
+//     "test:coverage": "jest --coverage"
+//   },
+//   "keywords": [
+//     "tambola",
+//     "housie",
+//     "game",
+//     "validator",
+//     "testing"
+//   ],
+//   "author": "Sahaj Assignment",
+//   "license": "MIT",
+//   "devDependencies": {
+//     "jest": "^29.7.0"
+//   },
+//   "jest": {
+//     "testEnvironment": "node",
+//     "collectCoverageFrom": [
+//       "tambola.js"
+//     ]
+//   }
+// }
