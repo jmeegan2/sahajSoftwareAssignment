@@ -20,18 +20,18 @@ Build a claim validator for the game of Tambola (Housie). The system should dete
 ## Functional Requirements
 1. **Input:**
    - Numbers announced so far (array of numbers)
-   - A valid ticket (3x9 grid, numbers or blanks)   
+   - A valid ticket (3x9 grid, numbers or blanks)   (I just looked this up)
    - A claim for a specific game (game type)
 
 2. **Output:**
-   - Accepted/Rejected (boolean or message)
+   - Accepted/Rejected 
 
 3. **Game Types (Winning Patterns):**
-   - **Top line:** All numbers in the top row are crossed
-   - **Middle line:** All numbers in the middle row are crossed
-   - **Bottom line:** All numbers in the bottom row are crossed
-   - **Full house:** All 15 numbers on the ticket are crossed
-   - **Early five:** First ticket to have 5 numbers crossed
+   - **Top line:** All numbers in the top row are crossed fastest
+   - **Middle line:** All numbers in the middle row are crossed fastest
+   - **Bottom line:** All numbers in the bottom row are crossed fastest
+   - **Full house:** All 15 numbers on the ticket are crossed first
+   - **Early five:** Fastest ticket to have 5 numbers crossed
 
 4. **Rules:**
    - System only returns whether a claim is accepted or rejected
