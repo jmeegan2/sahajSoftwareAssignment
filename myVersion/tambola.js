@@ -1,20 +1,45 @@
+function isImmediateClaim(required, announcedNumbers) {
+    let lastAnnouncedIndex = -1;
+    for (let i = 0; i < announcedNumbers.length; i++) {
+        if (required.includes(announcedNumbers[i])) {
+            lastAnnouncedIndex = i;
+        }
+    }
+    return lastAnnouncedIndex === announcedNumbers.length - 1;
+}
+
 function isRowComplete(row, announcedNumbers) {
-    return row.filter(num => num !== 0).every(num => announcedNumbers.includes(num))
+    const required = row.filter(num => num !== 0);
+    if (!required.every(num => announcedNumbers.includes(num))) return false;
+    // Immediate claim logic
+    return isImmediateClaim(required, announcedNumbers);
 }
 
 
 // Full House: Check if all numbers (except zeros) in the ticket are in the announced numbers.
 function isFullHouse(ticket, announcedNumbers) {
-    const allNumbers = ticket.flat().filter(num => num !== 0);
-    return allNumbers.every(num => announcedNumbers.includes(num));
+    const required = ticket.flat().filter(num => num !== 0);
+    if (!required.every(num => announcedNumbers.includes(num))) return false;
+    // Immediate claim logic
+    return isImmediateClaim(required, announcedNumbers);
 }
 
-// Early five: Check if all at least 5 numbers from the ticket are in the announced numbers
+// Early five: Check if at least 5 numbers from the ticket are in the announced numbers, and the 5th is the last announced
+// Note: We don't reuse isImmediateClaim here because Early Five requires the 5th crossed number to be the last announced, not all required numbers.
 function isEarlyFive(ticket, announcedNumbers) {
     const allNumbers = ticket.flat().filter(num => num !== 0);
-    const crossed = allNumbers.filter(num => announcedNumbers.includes(num));
-    return crossed.length >= 5;
+    const crossed = [];
+    for (let num of announcedNumbers) {
+        if (allNumbers.includes(num) && !crossed.includes(num)) {
+            crossed.push(num);
+            if (crossed.length === 5) break;
+        }
+    }
+    if (crossed.length < 5) return false;
+    // The 5th crossed number must be the last announced
+    return announcedNumbers[announcedNumbers.length - 1] === crossed[4];
 }
+
 
 
 function validateClaim(ticket, announcedNumbers, gameType) {
@@ -34,4 +59,6 @@ function validateClaim(ticket, announcedNumbers, gameType) {
     }
 }
 
-module.exports = { isRowComplete, isFullHouse, isEarlyFive, validateClaim }
+
+
+module.exports = { isRowComplete, isFullHouse, isEarlyFive, validateClaim, isImmediateClaim }

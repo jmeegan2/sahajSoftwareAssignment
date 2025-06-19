@@ -48,3 +48,4 @@ Build a claim validator for the game of Tambola (Housie). The system should dete
 3. Encapsulate logic in classes if the problem grows in complexity.
 4. Write tests as you go to make sure each part works.
 5. Refactor to remove duplication and improve clarity.
+
