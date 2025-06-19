@@ -2,6 +2,12 @@ const { isRowComplete, isFullHouse, isEarlyFive, validateClaim } = require('./ta
 
 
 describe('Tambola game logic', () => {
+    // Use a valid 3x9 ticket for all validateClaim tests
+    const TICKET_3x9 = [
+        [1, 2, 0, 0, 0, 0, 0, 0, 0],
+        [3, 0, 4, 0, 0, 0, 0, 0, 0],
+        [5, 6, 0, 0, 0, 0, 0, 0, 0]
+    ];
 
     test('isRowComplete enforces immediate claim', () => {
         expect(isRowComplete([1, 2, 0, 4], [1, 2, 4])).toBe(true); // claim after 4
@@ -11,9 +17,9 @@ describe('Tambola game logic', () => {
 
     test('isFullHouse enforces immediate claim', () => {
         const ticket = [
-            [1, 2, 0],
-            [3, 0, 4],
-            [5, 6, 0]
+            [1, 2, 0, 0, 0, 0, 0, 0, 0],
+            [3, 0, 4, 0, 0, 0, 0, 0, 0],
+            [5, 6, 0, 0, 0, 0, 0, 0, 0]
         ];
         expect(isFullHouse(ticket, [1, 2, 3, 4, 5, 6])).toBe(true); // claim after 6
         expect(isFullHouse(ticket, [1, 2, 3, 4, 5, 6, 7])).toBe(false); // extra number after
@@ -21,9 +27,9 @@ describe('Tambola game logic', () => {
 
     test('isEarlyFive enforces immediate claim', () => {
         const ticket = [
-            [1, 2, 0],
-            [3, 0, 4],
-            [5, 6, 0]
+            [1, 2, 0, 0, 0, 0, 0, 0, 0],
+            [3, 0, 4, 0, 0, 0, 0, 0, 0],
+            [5, 6, 0, 0, 0, 0, 0, 0, 0]
         ];
         expect(isEarlyFive(ticket, [1, 2, 3, 4, 5])).toBe(true); // 5th crossed is last
         expect(isEarlyFive(ticket, [1, 2, 3, 4, 6, 5])).toBe(false); // 5th crossed is not last
@@ -31,11 +37,7 @@ describe('Tambola game logic', () => {
     })
 
     test('validateClaim enforces immediate claim for all game types', () => {
-        const ticket = [
-            [1, 2, 0],
-            [3, 0, 4],
-            [5, 6, 0]
-        ];
+        const ticket = TICKET_3x9;
         expect(validateClaim(ticket, [1, 2], 'top_line')).toBe("Accepted");
         expect(validateClaim(ticket, [1, 2, 3], 'top_line')).toBe("Rejected"); // extra number after
         expect(validateClaim(ticket, [3, 4], 'middle_line')).toBe("Accepted");
@@ -47,8 +49,6 @@ describe('Tambola game logic', () => {
         expect(validateClaim(ticket, [1, 2, 3, 4, 5], 'early_five')).toBe("Accepted");
         expect(validateClaim(ticket, [1, 2, 3, 4, 6, 5], 'early_five')).toBe("Rejected");
     })
-
-
 
     const FULL_SIZE_TAMBOLA_TICKET = [
         [  5, 12,  0, 34,  0, 56, 67,  0, 89 ],
