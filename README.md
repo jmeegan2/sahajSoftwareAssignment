@@ -70,12 +70,19 @@ Build a claim validator for the game of Tambola (Housie). The system should dete
 - 0 (empty space)
 - 4 (index for 5th element in Early Five)
 
+Create enums.js to store ticket and game type constants using Object.freeze. This allows me to import and use these constants throughout the codebase, replacing magic numbers and string literals for clarity and maintainability.
+
+
+
+validation and error message for input. 
+
 //Input Validation & Error Messages
 function isValidTicket(ticket) {
     return Array.isArray(ticket) &&
         ticket.length === 3 &&
         ticket.every(row => Array.isArray(row) && row.length === 9);
 }
+
 
 
 
