@@ -57,9 +57,25 @@ Build a claim validator for the game of Tambola (Housie). The system should dete
 ## Approach
 1. Start with a simple function to check if a row is complete.
 2. Expand to handle all game types using if/else or a switch statement.
-3. Encapsulate logic in classes if the problem grows in complexity. ( I didn’t use classes because the problem is simple and functional code is clearer for this scope. If the requirements grow, refactoring to classes would make sense.)
+3. Encapsulate logic in classes if the problem grows in complexity. ( I didn't use classes because the problem is simple and functional code is clearer for this scope. If the requirements grow, refactoring to classes would make sense.)
 4. Write tests as I go to make sure each part works.
 5. Refactor to remove duplication and improve clarity.
+
+
+
+// Current magic numbers:
+- 5 (Early Five count)
+- 3 (ticket rows) 
+- 9 (ticket columns)
+- 0 (empty space)
+- 4 (index for 5th element in Early Five)
+
+//Input Validation & Error Messages
+function isValidTicket(ticket) {
+    return Array.isArray(ticket) &&
+        ticket.length === 3 &&
+        ticket.every(row => Array.isArray(row) && row.length === 9);
+}
 
 
 
