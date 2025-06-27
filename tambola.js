@@ -64,9 +64,15 @@ function validateClaim(ticket, announcedNumbers, gameType) {
 
 // Validates that a ticket is a 3x9 grid (each row is an array of length 9)
 function isValidTicket(ticket) {
-    return Array.isArray(ticket) &&
-        ticket.length === 3 &&
-        ticket.every(row => Array.isArray(row) && row.length === 9);
+    if (!Array.isArray(ticket) || ticket.length !== 3) return false; // three row check
+    return ticket.every(row => {
+        if (!Array.isArray(row) || row.length !== 9) return false; // checks each array is an array and length 9
+        // Filter only numbers
+        const numbers = row.filter(cell => typeof cell === 'number');
+        if (numbers.length !== 5) return false;
+        // Check all numbers are integers between 1 and 90 inclusive
+        return numbers.every(num => Number.isInteger(num) && num >= 1 && num <= 90)
+    });
 }
 
 module.exports = { isRowComplete, isFullHouse, isEarlyFive, validateClaim, isImmediateClaim, isValidTicket }
