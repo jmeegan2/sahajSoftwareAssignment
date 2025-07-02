@@ -9,7 +9,7 @@ function isImmediateClaim(required, announcedNumbers) {
 }
 
 function isRowComplete(row, announcedNumbers) {
-    const required = row.filter(num => num !== 0);
+    const required = row.filter(num => num !== '-');
     if (!required.every(num => announcedNumbers.includes(num))) return false;
     // Immediate claim logic
     return isImmediateClaim(required, announcedNumbers);
@@ -18,7 +18,7 @@ function isRowComplete(row, announcedNumbers) {
 
 // Full House: Check if all numbers (except zeros) in the ticket are in the announced numbers.
 function isFullHouse(ticket, announcedNumbers) {
-    const required = ticket.flat().filter(num => num !== 0); //flatten 2D array into 1D like [[1,2,3],[4,5,6]] => [1,2,3,4,5,6]
+    const required = ticket.flat().filter(num => num !== '-'); //flatten 2D array into 1D like [[1,2,3],[4,5,6]] => [1,2,3,4,5,6]
     if (!required.every(num => announcedNumbers.includes(num))) return false;
     // Immediate claim logic
     return isImmediateClaim(required, announcedNumbers);
@@ -27,7 +27,7 @@ function isFullHouse(ticket, announcedNumbers) {
 // Early five: Check if at least 5 numbers from the ticket are in the announced numbers, and the 5th is the last announced
 // Note: We don't reuse isImmediateClaim here because Early Five requires the 5th crossed number to be the last announced, not all required numbers.
 function isEarlyFive(ticket, announcedNumbers) {
-    const allNumbers = ticket.flat().filter(num => num !== 0); //flatten 2D array into 1D like [[1,2,3],[4,5,6]] => [1,2,3,4,5,6]
+    const allNumbers = ticket.flat().filter(num => num !== '-'); //flatten 2D array into 1D like [[1,2,3],[4,5,6]] => [1,2,3,4,5,6]
     const crossed = [];
     for (let num of announcedNumbers) {
         if (allNumbers.includes(num) && !crossed.includes(num)) {
